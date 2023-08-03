@@ -1,16 +1,17 @@
 <template>
   <div :class="courseCard">
-    <div>Course Name</div>
-    <p>Name: {{ given.courseName }}</p>
-    <!-- <p>Credit: {{ given.courseCredit }}</p>
-  <p>Hours: {{ given.courseHour }}</p>
-  <p>Discription: {{ given.courseDiscription }}</p> -->
+    <p>Course: {{ given.courseName }}</p>
+    <p>Credit: {{ given.courseCredit }}</p>
+    <p>Hours: {{ given.courseHour }}</p>
+    <p>Discription: {{ given.courseDiscription }}</p>
     <p>Student number: {{ given.studentNum + count }} /20</p>
     <p v-if="given.studentNum + count < 20">Status: Available</p>
     <p v-else>Status: Not available</p>
-    <button :class="av" v-if="selected" @click="innerAdd">Add</button>
-    <button :class="nav" v-else>Cancel</button>
-    <!-- <button @click="outerAdd">Add to parent</button> -->
+    <div v-if="given.studentNum + count < 20">
+      <button :class="av" v-if="selected" @click="innerAdd">Add</button>
+      <button :class="nav" v-else>Cancel</button>
+      <!-- <button @click="outerAdd">Add to parent</button> -->
+    </div>
   </div>
 </template>
 
@@ -59,11 +60,9 @@ export default {
 
 .course-card {
   border: 1px solid darkgray;
-  margin: auto;
-  width: 200px;
+  width: 600px;
+  padding: 1.5rem;
+  text-align: left;
+  margin-bottom: 2rem;
 }
-
-/* button {
-  display: none;
-} */
 </style>

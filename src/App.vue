@@ -1,14 +1,20 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png" />
   <!-- <HelloWorld msg="Welcome to Your Vue.js App" /> -->
-  <h1>Course List App</h1>
-  <p>Course selected: {{ count }}</p>
-  <CourseItem
-    v-for="courseList in courseLists"
-    :key="courseList.id"
-    :given="courseList"
-    @count-to-parent="addOne"
-  />
+  <h1>Vue Course List</h1>
+  <h2>Course selected: {{ count }}</h2>
+  <div :class="courseFlexbox">
+    <CourseItem
+      v-for="courseList in courseLists"
+      :key="courseList.id"
+      :given="courseList"
+      @count-to-parent="addOne"
+    />
+  </div>
+
+  <div :class="mySelection">
+
+  </div>
 </template>
 
 <script>
@@ -25,11 +31,12 @@ export default {
   data() {
     return {
       count: 0,
+      courseFlexbox: "course-flexbox",
 
       courseLists: [
         {
           id: 1,
-          courseName: "Web Project",
+          courseName: "Intro to Vue 3",
           courseCredit: 50,
           courseHour: 150,
           courseDiscription: "xxxxxxxxxxxxxx",
@@ -37,11 +44,27 @@ export default {
         },
         {
           id: 2,
-          courseName: "Web Creation & Design",
+          courseName: "Vue CLI and Vite",
           courseCredit: 20,
           courseHour: 120,
           courseDiscription: "xxxxxxxxxxxxxx",
           studentNum: 19,
+        },
+        {
+          id: 3,
+          courseName: "Vue 3 Composition API",
+          courseCredit: 20,
+          courseHour: 120,
+          courseDiscription: "xxxxxxxxxxxxxx",
+          studentNum: 19,
+        },
+        {
+          id: 4,
+          courseName: "From Vue 2 to Vue 3 ",
+          courseCredit: 20,
+          courseHour: 120,
+          courseDiscription: "xxxxxxxxxxxxxx",
+          studentNum: 14,
         },
       ],
     };
@@ -63,5 +86,12 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.course-flexbox {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 </style>
