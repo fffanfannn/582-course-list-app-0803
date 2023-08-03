@@ -9,6 +9,7 @@
       :key="courseList.id"
       :given="courseList"
       @count-to-parent="addOne"
+      @count-remove-parent="removeOne"
       @selected-course-display="courseDisplay"
     />
   </div>
@@ -74,6 +75,10 @@ export default {
   methods: {
     addOne() {
       this.count++;
+    },
+
+    removeOne() {
+      this.count--;
     },
 
     courseDisplay() {},
