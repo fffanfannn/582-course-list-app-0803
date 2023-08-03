@@ -3,7 +3,12 @@
   <!-- <HelloWorld msg="Welcome to Your Vue.js App" /> -->
   <h1>Course List App</h1>
   <p>{{ count }}</p>
-  <CourseItem v-bind:v-for="courselist in courselists" :given="courselist" />
+  <CourseItem
+    v-for="courseList in courseLists"
+    :key="courseList.id"
+    :given="courseList"
+    @count-to-parent="addOne"
+  />
 </template>
 
 <script>
@@ -20,9 +25,24 @@ export default {
   data() {
     return {
       count: 0,
-      courselists: [
-        { id: 1, name: "AA", age: 15 },
-        { id: 2, name: "BB", age: 17 },
+
+      courseLists: [
+        {
+          id: 1,
+          courseName: "Web Project",
+          courseCredit: 50,
+          courseHour: 150,
+          courseDiscription: "xxxxxxxxxxxxxx",
+          studentNum: 0,
+        },
+        {
+          id: 2,
+          courseName: "Web Creation & Design",
+          courseCredit: 20,
+          courseHour: 120,
+          courseDiscription: "xxxxxxxxxxxxxx",
+          studentNum: 10,
+        },
       ],
     };
   },
@@ -43,5 +63,13 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.av-label {
+  border: 1px solid red;
+}
+
+.av-label.disable {
+  border: 1px solid rgb(0, 255, 64);
 }
 </style>
