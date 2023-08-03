@@ -2,7 +2,7 @@
   <img alt="Vue logo" src="./assets/logo.png" />
   <!-- <HelloWorld msg="Welcome to Your Vue.js App" /> -->
   <h1>Course List App</h1>
-  <p>{{ count }}</p>
+  <p>Course selected: {{ count }}</p>
   <CourseItem
     v-for="courseList in courseLists"
     :key="courseList.id"
@@ -33,7 +33,7 @@ export default {
           courseCredit: 50,
           courseHour: 150,
           courseDiscription: "xxxxxxxxxxxxxx",
-          studentNum: 0,
+          studentNum: 20,
         },
         {
           id: 2,
@@ -41,7 +41,7 @@ export default {
           courseCredit: 20,
           courseHour: 120,
           courseDiscription: "xxxxxxxxxxxxxx",
-          studentNum: 10,
+          studentNum: 19,
         },
       ],
     };
@@ -63,13 +63,5 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-}
-
-.av-label {
-  border: 1px solid red;
-}
-
-.av-label.disable {
-  border: 1px solid rgb(0, 255, 64);
 }
 </style>
