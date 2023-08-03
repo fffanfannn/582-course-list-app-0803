@@ -9,11 +9,12 @@
       :key="courseList.id"
       :given="courseList"
       @count-to-parent="addOne"
+      @selected-course-display="courseDisplay"
     />
   </div>
 
   <div :class="mySelection">
-
+    <h2>My Selection</h2>
   </div>
 </template>
 
@@ -48,7 +49,7 @@ export default {
           courseCredit: 20,
           courseHour: 120,
           courseDiscription: "xxxxxxxxxxxxxx",
-          studentNum: 19,
+          studentNum: 15,
         },
         {
           id: 3,
@@ -74,6 +75,8 @@ export default {
     addOne() {
       this.count++;
     },
+
+    courseDisplay() {},
   },
 };
 </script>
@@ -89,9 +92,10 @@ export default {
 }
 
 .course-flexbox {
-  margin-top: 3rem;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   flex-wrap: wrap;
+  max-width: 1000px;
+  margin: 3rem auto auto auto;
 }
 </style>

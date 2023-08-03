@@ -41,6 +41,7 @@ export default {
       this.count++;
       this.$emit("count-to-parent");
       this.selected = !this.selected;
+      this.$emit("selected-course-display", this.given);
     },
     outerAdd() {
       this.$emit("count-to-parent");
@@ -60,7 +61,7 @@ export default {
 
 .course-card {
   border: 1px solid darkgray;
-  width: 600px;
+  width: 400px;
   padding: 1.5rem;
   text-align: left;
   margin-bottom: 2rem;
