@@ -66,7 +66,7 @@ export default {
           courseCredit: 20,
           courseHour: 120,
           courseDiscription: "xxxxxxxxxxxxxx",
-          studentNum: 14,
+          studentNum: 0,
         },
       ],
     };
@@ -86,7 +86,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style scope lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

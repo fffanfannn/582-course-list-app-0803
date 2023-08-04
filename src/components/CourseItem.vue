@@ -1,32 +1,36 @@
 <template>
-  <div :class="courseCard">
-    <!-- <div :class="selectedbg" v-if="selected"> -->
+  <div class="course-card" :class="{ isFull, isSelected }">
     <p>Course: {{ given.courseName }}</p>
-    <p>Credit: {{ given.courseCredit }}</p>
-    <p>Hours: {{ given.courseHour }}</p>
     <p>Discription: {{ given.courseDiscription }}</p>
-    <p>Student number: {{ given.studentNum + count }} /20</p>
-    <p v-if="given.studentNum + count < 20">Status: Available</p>
-    <p v-else>Status: Not available</p>
+    <ul>
+      <li>Credit: {{ given.courseCredit }}</li>
+      <li>Hours: {{ given.courseHour }}</li>
+      <li>Student number: {{ given.studentNum + count }} /20</li>
+      <li>
+        ENROLLMENT: {{ given.studentNum }},
+        <span class="status">{{ enrollmentStatus }}</span>
+      </li>
+      <!-- <li v-if="given.studentNum + count < 20">Status: Available</li>
+      <li v-else>Status: Not available</li> -->
+    </ul>
     <!-- <div v-if="given.studentNum + count < 20"> -->
     <button
       :class="av"
-      v-if="selected && given.studentNum + count < 20"
+      v-if="!isSelected && given.studentNum < 20"
       @click="courseAdd"
     >
       Add Course
     </button>
-    <p
+    <button
       :class="nav"
-      v-else-if="!selected && given.studentNum + count < 20"
+      v-else-if="isSelected && given.studentNum < 20"
       @click="courseRemove"
     >
-      Selected
-    </p>
+      Remove Course
+    </button>
     <!-- <button @click="outerAdd">Add to parent</button> -->
     <!-- </div> -->
   </div>
-  <!-- </div> -->
 </template>
 
 <script>
@@ -38,9 +42,8 @@ export default {
       count: 0,
       av: "av-label",
       nav: "av-label disable",
-      courseCard: "course-card",
       selectedbg: "selected-bg",
-      selected: true,
+      isSelected: false,
     };
   },
 
@@ -54,25 +57,40 @@ export default {
   methods: {
     courseAdd() {
       // this.count++;
+      this.isSelected = true;
       this.$emit("count-to-parent");
-      this.selected = !this.selected;
       this.$emit("selected-course-display", this.given);
     },
 
     courseRemove() {
-      this.count--;
+      // this.count--;
+      this.isSelected = false;
       this.$emit("count-remove-parent");
-      this.selected = !this.selected;
     },
 
-    outerAdd() {
-      this.$emit("count-to-parent");
+    // outerAdd() {
+    //   this.$emit("count-to-parent");
+    // },
+  },
+
+  computed: {
+    enrollmentStatus() {
+      if (this.given.studentNum == 0) {
+        return "empty";
+      } else if (this.given.studentNum >= 20) {
+        return "full";
+      } else {
+        return "available to join";
+      }
+    },
+    isFull() {
+      return this.given.studentNum >= 20;
     },
   },
 };
 </script>
 
-<style>
+<style scope lang="scss">
 .av-label {
   border: 1px solid transparent;
   background-color: rgb(0, 128, 107);
@@ -88,7 +106,6 @@ export default {
   border: 1px solid rgb(6, 67, 77);
   background-color: transparent;
   color: rgb(6, 67, 77);
-  border-radius: 15px;
 }
 
 .course-card {
@@ -101,7 +118,11 @@ export default {
     0 6px 20px 0 rgba(77, 77, 77, 0.19);
 }
 
-.selected-bg {
-  background-color: antiquewhite;
+.isFull {
+  color: rgb(204, 204, 204);
+}
+
+.isSelected {
+  background-color: rgb(203, 237, 240);
 }
 </style>
