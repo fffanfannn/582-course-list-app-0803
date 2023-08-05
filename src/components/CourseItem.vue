@@ -1,4 +1,5 @@
 <template>
+  <!-- boolean as class name -->
   <div class="course-card" :class="{ isFull, isSelected }">
     <p>Course: {{ given.courseName }}</p>
     <p>Discription: {{ given.courseDiscription }}</p>
@@ -42,7 +43,6 @@ export default {
       count: 0,
       av: "av-label",
       nav: "av-label disable",
-      selectedbg: "selected-bg",
       isSelected: false,
     };
   },

@@ -1,5 +1,8 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png" />
+  <div>{{ inputName }}</div>
+  <label for="firstName"></label>
+  <input id="firstName" name="firstName" type="text" v-model="inputName" />
   <!-- <HelloWorld msg="Welcome to Your Vue.js App" /> -->
   <h1>Vue Course List</h1>
   <h2>Course selected: {{ count }}</h2>
@@ -32,9 +35,9 @@ export default {
 
   data() {
     return {
+      inputName: "xxx",
       count: 0,
       courseFlexbox: "course-flexbox",
-
       courseLists: [
         {
           id: 1,
